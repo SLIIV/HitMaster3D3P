@@ -4,56 +4,65 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(Animator))]
-public class CharacterMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour, IVictory, IAnimateble
 {
     [SerializeField] private MovePoint[] _movePoints;
-    [SerializeField] private Victory _victory;
-    private int _currentPoint;
+    private int _currentPoint = 0;
+    private bool _isRunning;
     private NavMeshAgent _movementAI;
-    private Animator _animator;
 
     private void Start()
     {
-        _currentPoint = 0;
-        Enemy.OnDeath.AddListener(() => CheckForMovingAbility());
+        _isRunning = true;
         _movementAI = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();
         _movementAI.destination = _movePoints[0].transform.position;
+
     }
 
     private void Update()
     {
-        _animator.SetBool("IsRunning", !(_movementAI.velocity == Vector3.zero));
-        
-        if (_currentPoint == _movePoints.Length - 1 && _movementAI.remainingDistance > 0 && _movementAI.remainingDistance < 1)
-        {
-            _victory.ShowVictory();
-        }
+        CheckForMovementAbility();
     }
 
-    private void CheckForMovingAbility()
+    public void CheckForMovementAbility()
     {
-        if(_movePoints[_currentPoint].IsReadyForMove())
+        if (IsReadyForMove())
         {
             MoveToNewPoint();
         }
     }
 
-    private void MoveToNewPoint()
+    public bool IsReadyForMove()
+    {
+        return _movePoints[_currentPoint].IsReadyForMove();
+    }
+
+    public void MoveToNewPoint()
     {
         if (_currentPoint < _movePoints.Length - 1)
         {
+            _isRunning = true;
             _currentPoint++;
             _movementAI.destination = _movePoints[_currentPoint].transform.position;
             _movementAI.isStopped = false;
-            CheckForMovingAbility();
-            
+            CheckForMovementAbility();
         }
     }
 
-    private void OnDestroy()
+    public bool IsDestinatedToFinalMovePoint()
     {
-        Enemy.OnDeath.RemoveAllListeners();
+        if (_movementAI.remainingDistance > 0 && _movementAI.remainingDistance < 1 && _currentPoint == _movePoints.Length - 1)
+            return true;
+        return false;
+    }
+
+    public bool IsDestinatedToMovePoint()
+    {
+        if (_movementAI.remainingDistance >= 0 && _movementAI.remainingDistance < 1 && _isRunning)
+        {
+            _isRunning = false;
+            return true;
+        }
+        return false;
     }
 }

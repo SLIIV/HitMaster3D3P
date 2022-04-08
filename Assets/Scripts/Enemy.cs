@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    public void DisactivateAnimator()
+    public void Death()
     {
         Dead = true;
         OnDeath.Invoke();
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
             _hpBar.localScale = new Vector3(health / maxHealth, 1, 1);
             _hpBar.localPosition = new Vector3((1 - _hpBar.localScale.x) / 2, 0, 0);
             if (_health <= 0)
-                DisactivateAnimator();
+                Death();
         }
     }
 }

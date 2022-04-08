@@ -2295,6 +2295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _victoryWindow: {fileID: 1642472892}
+  _characterObject: {fileID: 1268560152142852}
 --- !u!114 &232000399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3909,7 +3910,6 @@ MonoBehaviour:
   - {fileID: 661697439}
   - {fileID: 355825046}
   - {fileID: 1196379009}
-  _victory: {fileID: 232000398}
 --- !u!195 &411093377
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -11142,7 +11142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb1755f4ded8e84da89d60cfa466f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletsCount: 10
+  _bulletsCount: 0
   _bulletPrefab: {fileID: 1864088625153391837, guid: 79c59959f0e55064db83c95f885cefbe, type: 3}
   _bulletParent: {fileID: 1414238818}
 --- !u!4 &1225493370
@@ -18529,6 +18529,7 @@ GameObject:
   - component: {fileID: 411093376}
   - component: {fileID: 411093377}
   - component: {fileID: 411093379}
+  - component: {fileID: 1268560152142853}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -18536,6 +18537,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1268560152142853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268560152142852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d916f1276c7a9544a81953759dfbea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1284911710721351
 GameObject:
   m_ObjectHideFlags: 0

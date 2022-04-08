@@ -19,9 +19,7 @@ public class PullObjects : MonoBehaviour
         _bullets = new List<GameObject>();
         for(int i = 0; i < _bulletsCount; i++)
         {
-            GameObject bullet = Instantiate(_bulletPrefab, _bulletParent);
-            bullet.SetActive(false);
-            _bullets.Add(bullet);
+            AddToPull();
         }
     }
 
@@ -34,11 +32,19 @@ public class PullObjects : MonoBehaviour
                 return _bullets[i];
             }
         }
-        return null;
+        AddToPull();
+        return _bullets[_bullets.Count - 1];
     }
     
     public static void ReturnToBulletPull(GameObject bullet)
     {
         bullet.SetActive(false);
+    }
+
+    private void AddToPull()
+    {
+        GameObject bullet = Instantiate(_bulletPrefab, _bulletParent);
+        bullet.SetActive(false);
+        _bullets.Add(bullet);
     }
 }

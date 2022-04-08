@@ -17,11 +17,11 @@ public class FireSystem : MonoBehaviour
 
     public void Update()
     {
-        if(Input.touchCount == 1 && _isAbleToFire && Time.timeScale == 1)
+        if(Input.GetMouseButtonDown(0) && _isAbleToFire && Time.timeScale == 1)
         {
             _isAbleToFire = false;
             StartCoroutine(Reload());
-            Ray ray = _playerViewCamera.ScreenPointToRay(Input.touches[0].position);
+            Ray ray = _playerViewCamera.ScreenPointToRay(Input.mousePosition);
             Vector3 bulletDirection = ray.GetPoint(20);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
