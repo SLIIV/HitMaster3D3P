@@ -1,7 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+
+public interface IAnimateble
+{
+    public bool IsDestinatedToMovePoint();
+    public bool IsReadyForMove();
+}
+
+public interface IVictory
+{
+    public bool IsDestinatedToFinalMovePoint();
+}
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class CharacterMovement : MonoBehaviour, IVictory, IAnimateble
@@ -16,10 +25,9 @@ public class CharacterMovement : MonoBehaviour, IVictory, IAnimateble
         _isRunning = true;
         _movementAI = GetComponent<NavMeshAgent>();
         _movementAI.destination = _movePoints[0].transform.position;
-
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         CheckForMovementAbility();
     }

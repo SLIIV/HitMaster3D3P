@@ -1,14 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+//ISP. Разделяем на интерфейсы, чтобы сущность не использовала лишние методы и свойства.
+public interface IEnemy
+{
+    bool Dead { get; }
+
+    void Death();
+    void GetDamage();
+}
+
+public interface ICalculateble
+{
+    UnityEvent OnDeath { get; }
+}
+
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Animator))]
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IEnemy, ICalculateble
 {
-    public static UnityEvent OnDeath = new UnityEvent();
-    public bool Dead;
+    public UnityEvent OnDeath => _onDeath;
+    public bool Dead => _dead;
+    private bool _dead;
+    private UnityEvent _onDeath = new UnityEvent();
     [SerializeField] private int _health;
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _hpBar;
@@ -31,8 +45,8 @@ public class Enemy : MonoBehaviour
 
     public void Death()
     {
-        Dead = true;
-        OnDeath.Invoke();
+        _dead = true;
+        _onDeath.Invoke();
         for (int i = 0; i < _ragDollColliders.Length; i++)
         {
             _ragDollColliders[i].enabled = true;

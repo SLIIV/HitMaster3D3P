@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Полностью самостоятельный пулл объектов. При необходимости добавляет новые объекты.
 public class PullObjects : MonoBehaviour
 {
     [SerializeField] private int _bulletsCount;
@@ -47,4 +47,5 @@ public class PullObjects : MonoBehaviour
         bullet.SetActive(false);
         _bullets.Add(bullet);
     }
+
 }

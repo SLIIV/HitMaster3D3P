@@ -684,7 +684,22 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: LEGACY_INPUT_MANGER
+    4: LEGACY_INPUT_MANGER
+    7: LEGACY_INPUT_MANGER
+    13: LEGACY_INPUT_MANGER
+    14: LEGACY_INPUT_MANGER
+    19: LEGACY_INPUT_MANGER
+    21: LEGACY_INPUT_MANGER
+    25: LEGACY_INPUT_MANGER
+    27: LEGACY_INPUT_MANGER
+    28: LEGACY_INPUT_MANGER
+    29: LEGACY_INPUT_MANGER
+    30: LEGACY_INPUT_MANGER
+    31: LEGACY_INPUT_MANGER
+    32: LEGACY_INPUT_MANGER
+    33: LEGACY_INPUT_MANGER
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

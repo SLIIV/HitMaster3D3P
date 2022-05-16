@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +5,7 @@ public class MenuButtons : MonoBehaviour
 {
     [SerializeField] private GameObject _startWindow;
 
-    public void Start()
+    private void Start()
     {
         Time.timeScale = 0;
     }
